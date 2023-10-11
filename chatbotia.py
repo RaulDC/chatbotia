@@ -2,8 +2,6 @@ import mysql.connector
 import getpass
 import re
 import random
-# Variables globales para almacenar el curso seleccionado
-selected_course = None
 
 # Conexión a la base de datos MySQL
 def connect_to_database():
@@ -26,14 +24,16 @@ def authenticate_user():
     connection = connect_to_database()
 
     if connection:
-        sql_select_Query = f"SELECT * FROM t_estudiantes WHERE cod_estudiante = '{user}' AND con_estudiante = '{password}'"
+        sql_select_Query = f"SELECT nom_estudiante, ape_estudiante FROM t_estudiantes WHERE cod_estudiante = '{user}' AND con_estudiante = '{password}'"
         cursor = connection.cursor()
         cursor.execute(sql_select_Query)
-        records = cursor.fetchall()
+        records = cursor.fetchone()  # Obtenemos el primer registro (debería ser único)
         rp = cursor.rowcount
 
         if rp == 1:
-            print("Inicio de sesión exitoso!")
+            nombre = records[0]  # Índice 0 es el nombre
+            apellido = records[1]  # Índice 1 es el apellido
+            print(f"Inicio de sesión exitoso, ¡Hola {nombre} {apellido}!")
             return True
         else:
             print("Error en las credenciales")
@@ -42,8 +42,8 @@ def authenticate_user():
         return False
 
 # Funciones del chatbot
-def get_response(user_input):
-    split_message = re.split(r'\s|[,:;.?!-_]\s*', user_input.lower())
+def get_response(user_info):
+    split_message = re.split(r'\s|[,:;.?!-_]\s*', user_info.lower())
     response = check_all_messages(split_message)
     return response
 
@@ -67,40 +67,22 @@ def message_probability(user_message, recognized_words, single_response=False, r
     else:
         return 0
 
-# Función para obtener información básica del curso
-def get_course_info(course):
-    if course == "ia":
-        return "La modalidad del curso es 100% virtual.\nEl sílabo se encuentra en: https://tinyurl.com/f4ydy7z6\nHay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo.\nEl curso equivale a 3 créditos."
-    # Agrega más cursos y sus detalles aquí
-
 def check_all_messages(message):
-    global selected_course  # Agrega esta línea para declarar selected_course como una variable global
-
     highest_prob = {}
 
     def response(bot_response, list_of_words, single_response=False, required_words=[]):
         nonlocal highest_prob
-        message_prob = message_probability(message, list_of_words, single_response, required_words)
-        highest_prob[bot_response] = message_prob
+        highest_prob[bot_response] = message_probability(message, list_of_words, single_response, required_words)
 
     response('Hola soy botCertus', ['hola', 'hi', 'saludos', 'buenas'], single_response=True)
     response('Estoy bien y tu?', ['como', 'estas', 'va', 'vas', 'sientes'], required_words=['como'])
     response('Siempre a la orden', ['gracias', 'te lo agradezco', 'thanks'], single_response=True)
     response('Arquitectura y Diseño con IA', ['sexto ciclo', 'sexto', 'cursos de sexto'], single_response=True)
-
-    if selected_course:
-        if any(word in message for word in ['ia', 'inteligencia', 'artificial']):
-            selected_course = "ia"
-            response('¿Qué deseas saber del curso de IA: \n - Información básica del curso \n - Requisitos del curso', ['informacion', 'basica', 'requisitos', 'curso'], required_words=[selected_course])
-        else:
-            response('No entendí tu consulta', [], single_response=True)
-    else:
-        response('Información básica del curso: \n > La modalidad del curso es 100% virtual \n > El sílabo se encuentra en: https://tinyurl.com/f4ydy7z6 \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 3 créditos', ['informacion', 'basica'], required_words=[selected_course])
+    response('Qué deseas saber:  \n - Información básica de algun curso \n - Requisitos de algun curso', ['deseo', 'curso'], single_response=True)
+    response('Información básica del curso: \n > La modalidad del curso es 100% virtual \n > El sílabo se encuentra en: https://tinyurl.com/f4ydy7z6 \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 3 créditos', ['informacion', 'basica', 'informacion basica', 'ia'], required_words=['ia'])
 
     best_match = max(highest_prob, key=highest_prob.get)
-    return best_match
-
-
+    return unknown() if highest_prob[best_match] < 1 else best_match
 
 def unknown():
     response = ['No entendí tu consulta', 'No estoy seguro de lo que quieres', 'Disculpa, ¿puedes intentarlo de nuevo?'][random.randrange(3)]
