@@ -141,12 +141,12 @@ crud_menu.add_command(label="Eliminar Registro", command=delete)
 
 # Conexión a la base de datos
 try:
-    connection = mysql.connector.connect(host='localhost',
-                                        database='bd_certus',
-                                        user='root',
-                                        password='4321')
+    connection = mysql.connector.connect(host='bbdyxtq2xayjozsfil1n-mysql.services.clever-cloud.com',
+                                        database='bbdyxtq2xayjozsfil1n',
+                                        user='u4wtydnovodwvldv',
+                                        password='oNdjuw7Jl28J3A26x0U3')
 except mysql.connector.Error as e:
-    messagebox.showerror("Error", "Error en la conexión a la base de datos:\n" + str(e))
+    messagebox.showerror("Error", "Error en la conexión a la base de datos:\n" + e)
     exit()
 
 root.mainloop()
