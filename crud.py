@@ -2,14 +2,28 @@ import tkinter as tk
 from tkinter import messagebox
 import mysql.connector
 from mysql.connector import Error
+import hashlib
 
 # Función para insertar un nuevo registro
 def insert_into():
+    def hash_password(password):
+        md5 = hashlib.md5()
+        md5.update(password.encode('utf-8'))
+        return md5.hexdigest()
+    
     def insert_record():
         cod = cod_entry.get()
         nom = nom_entry.get()
         ape = ape_entry.get()
+        #con = hash_password(con_entry.get())
         con = con_entry.get()
+
+
+        # Validar la contraseña
+        if len(con) < 10:
+            messagebox.showerror("Error", "La contraseña debe tener al menos 12 caracteres.")
+            return
+        
 
         try:
             cursor = connection.cursor()

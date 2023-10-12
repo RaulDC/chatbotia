@@ -2,6 +2,7 @@ import mysql.connector
 import getpass
 import re
 import random
+import hashlib
 
 # Conexión a la base de datos MySQL
 def connect_to_database():
@@ -19,7 +20,13 @@ def connect_to_database():
 
 # Autenticación de usuario
 def authenticate_user():
+    def hash_password(password):
+        md5 = hashlib.md5()
+        md5.update(password.encode('utf-8'))
+        return md5.hexdigest()
+    
     user = input("Ingrese el usuario: ")
+    #password = hash_password(getpass.getpass("Ingrese su contraseña: "))
     password = getpass.getpass("Ingrese su contraseña: ")
     connection = connect_to_database()
 
