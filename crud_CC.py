@@ -29,11 +29,11 @@ def insert_into():
     con_entry = tk.Entry(insert_window)
     con_entry.pack()
 
-    insert_button = tk.Button(insert_window, text="Insertar", command=lambda: insert_record(cod_entry, nom_entry, ape_entry, con_entry))
+    insert_button = tk.Button(insert_window, text="Insertar", command=lambda: insert_record(cod_entry, nom_entry, ape_entry, con_entry, insert_window))
     insert_button.pack()
 
 # Función para insertar un nuevo registro
-def insert_record(cod_entry, nom_entry, ape_entry, con_entry):
+def insert_record(cod_entry, nom_entry, ape_entry, con_entry, insert_window):
     cod = cod_entry.get()
     nom = nom_entry.get()
     ape = ape_entry.get()
