@@ -2,6 +2,7 @@ import mysql.connector
 import getpass
 import re
 import random
+import hashlib
 
 # Conexión a la base de datos MySQL
 def connect_to_database():
@@ -19,7 +20,13 @@ def connect_to_database():
 
 # Autenticación de usuario
 def authenticate_user():
+    def hash_password(password):
+        md5 = hashlib.md5()
+        md5.update(password.encode('utf-8'))
+        return md5.hexdigest()
+    
     user = input("Ingrese el usuario: ")
+    #password = hash_password(getpass.getpass("Ingrese su contraseña: "))
     password = getpass.getpass("Ingrese su contraseña: ")
     connection = connect_to_database()
 
@@ -77,9 +84,12 @@ def check_all_messages(message):
     response('Hola soy botCertus', ['hola', 'hi', 'saludos', 'buenas'], single_response=True)
     response('Estoy bien y tu?', ['como', 'estas', 'va', 'vas', 'sientes'], required_words=['como'])
     response('Siempre a la orden', ['gracias', 'te lo agradezco', 'thanks'], single_response=True)
-    response('Arquitectura y Diseño con IA', ['sexto ciclo', 'sexto', 'cursos de sexto'], single_response=True)
-    response('Qué deseas saber:  \n - Información básica de algun curso \n - Requisitos de algun curso', ['deseo', 'curso'], single_response=True)
-    response('Información básica del curso: \n > La modalidad del curso es 100% virtual \n > El sílabo se encuentra en: https://tinyurl.com/f4ydy7z6 \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 3 créditos', ['informacion', 'basica', 'informacion basica', 'ia'], required_words=['ia'])
+    response('Qué deseas saber:  \n - Información básica de algun curso \n - Requisitos de algun curso', ['deseo', 'curso', 'informacion'], required_words=['deseo'])
+    response('Información básica del curso: \n > Curso: Diseño de Soluciones con Inteligencia Artificial \n > Código de curso NRC: 13365 \n > La modalidad del curso es 100% virtual \n > El sílabo se encuentra en: https://tinyurl.com/f4ydy7z6 \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 3 créditos', ['informacion', 'basica', 'informacion basica', 'ia'], required_words=['ia'])
+    response('Información básica del curso: \n > Curso: Diseño de Soluciones Blockchain \n > Código de curso NRC: 13330 \n > La modalidad del curso es 100% virtual \n > El sílabo se encuentra en: https://tinyurl.com/2s39547k \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 5 créditos', ['informacion', 'basica', 'informacion basica', 'blockchain'], required_words=['blockchain'])
+    response('Información básica del curso: \n > Curso: Emprendimiento: Proyecto Integrador \n > Código de curso NRC: 13253 \n > La modalidad del curso es 100% presencial \n > Sedes: Surco - Independencia - Etc.  \n > El sílabo se encuentra en: https://tinyurl.com/yckfn7by \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 3 créditos', ['informacion', 'basica', 'informacion basica', 'emprendimiento'], required_words=['emprendimiento'])
+    response('Información básica del curso: \n > Curso: Gestión de Marca Personal \n > Código de curso NRC: 11642 \n > La modalidad del curso es 100% virtual \n > El sílabo se encuentra en: https://tinyurl.com/ymtkxcm2 \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 2 créditos', ['informacion', 'basica', 'informacion basica', 'gestion' ,'marca', 'personal'], required_words=['marca', 'personal'])
+    response('Información básica del curso: \n > Curso: Arquitectura de tecnología de la información \n > Código de curso NRC: 10016 \n > La modalidad del curso es 100% virtual \n > El sílabo se encuentra en: https://tinyurl.com/ymtkxcm2 \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 2 créditos', ['informacion', 'basica', 'informacion basica', 'arquitectura', 'tecnologia'], required_words=['arquitectura'])
 
     best_match = max(highest_prob, key=highest_prob.get)
     return unknown() if highest_prob[best_match] < 1 else best_match
