@@ -40,10 +40,13 @@ def authenticate_user():
         if rp == 1:
             nombre = records[0]  # Índice 0 es el nombre
             apellido = records[1]  # Índice 1 es el apellido
-            print(f"Inicio de sesión exitoso, ¡Hola {nombre} {apellido}!")
+            print("Inicio de sesión exitoso.")
+            print("-------------------------")
+            print(f"¡Bienvenido(a), {nombre} {apellido}! Estoy aquí para ayudarte a resolver tus consultas.")
+            print("-------------------------")
             return True
         else:
-            print("Error en las credenciales")
+            print("Inicio de sesión fallido. Por favor, verifique sus datos e intente nuevamente.")
             return False
     else:
         return False
