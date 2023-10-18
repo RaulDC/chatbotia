@@ -113,7 +113,7 @@ def llenar_tabla():
    records = db.cursor.fetchall()
    for row in records:
       cod = row[0]
-      tree.insert("", END, cod, text= cod, values=row)
+      tree.insert("", 0, cod, text= cod, values=row)
 
 def delete_record():
    try:
@@ -143,6 +143,13 @@ def delete_record():
 def insert_record():
 
    if validar():
+      # Verificar si el código ya existe en la base de datos
+      sqlv = "SELECT * FROM t_estudiantes WHERE cod_estudiante = %s"
+      db.cursor.execute(sqlv, (cod_entry.get(),))
+      existing_record = db.cursor.fetchone()
+      if existing_record:
+         messagebox.showerror("Error", "El código del estudiante ya existe.")
+         return
       val=(cod_entry.get(), nom_entry.get(), ape_entry.get(), con_entry.get())
       sql="INSERT INTO t_estudiantes(cod_estudiante, nom_estudiante, ape_estudiante, con_estudiante) VALUES (%s, %s, %s, %s)"
       db.cursor.execute(sql, val)
