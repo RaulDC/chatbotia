@@ -158,7 +158,6 @@ def insert_record():
       llenar_tabla()
       limpiar()
    else:
-      #messagebox.showerror("Error", "¡Campos vacíos!")
       return FALSE 
 
 
