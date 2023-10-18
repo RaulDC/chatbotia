@@ -67,8 +67,34 @@ update_button=Button(marco,text="ACTUALIZAR",command=lambda:update_record(),heig
 "--------------- CRUD --------------------"   
 # Función para seleccionar y mostrar todos los registros
 def validar():
-   return len(cod_entry.get()) and len(nom_entry.get()) and len(ape_entry.get()) and len(con_entry.get())
+   cod = cod_entry.get()
+   nom = nom_entry.get()
+   ape = ape_entry.get()
+   #con = hash_password(con_entry.get())
+   con = con_entry.get()
+
+   # Validar longitud y que sea un número
+   if not (len(cod) == 8 and cod.isdigit()):
+      messagebox.showerror("Error", "El Código del Estudiante debe tener 8 dígitos.")
+      return
+
+   # Validar que nombre y apellido contengan solo letras
+   if not nom.isalpha():
+      messagebox.showerror("Error", "Por favor, ingrese un Nombre válido.")
+      return
+
+   if not ape.isalpha():
+      messagebox.showerror("Error", "Por favor, ingrese un Apellido válido.")
+      return
    
+   # Validar la contraseña
+   if len(con) < 10:
+      messagebox.showerror("Error", "La contraseña debe tener al menos 10 caracteres.")
+      return
+   
+   return len(cod) and len(nom) and len(ape) and len(con) 
+
+
 def limpiar():
    nom_entry.delete(0, END)
    ape_entry.delete(0, END)
