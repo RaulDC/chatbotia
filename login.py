@@ -49,7 +49,7 @@ class Login:
         if len(self.cod.get()) !=0 and len(self.password.get()) !=0:
             return True
         else:
-             messagebox.showerror("ERROR DE INGRESO", "Ingrese su código y contraseña!!!")
+            messagebox.showerror("ERROR DE INGRESO", "Ingrese su código y contraseña!!!")
 
     def Validar_login(self, cod, password):
         db=DataBase()
@@ -75,10 +75,10 @@ class Login:
             if autenticado:
                 messagebox.showinfo("BIENVENIDO(A)", f'Estudiante {nombre} {apellido}') 
                 ventana_login.destroy()    
-                subprocess.call([sys.executable, 'c:/Users/Taborga/Documents/GitHub/chatbotia/app-bot.py', 'htmlfilename.htm'])  
+                subprocess.call([sys.executable, 'C:/Users/TUF GAMING/Documents/GitHub/chatbotia/app-bot.py', 'htmlfilename.htm'])  
             else:
                 messagebox.showerror("ERROR DE INGRESO", "Código o contraseña incorrectos") 
- 
+
 #verificar si el modulo ha sido ejecutado correctamente  
 if __name__ == '__main__':
     ventana_login=Tk()
