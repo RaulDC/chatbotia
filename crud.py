@@ -182,6 +182,7 @@ def update_record():
    boton_actualizar = Button(Ventana_editar, text="ACTUALIZAR", command=lambda: Actualizar(new_password.get(),cod), height=1, width=12, bg="black", fg="white",font=("Comic Sans", 8,"bold")) 
    boton_actualizar.grid(row=2, column=1, columnspan=2, padx=10, pady=15)
 
+   
    def Actualizar(new_password, new_con):
       try:  
          cursor = db.connection.cursor()
