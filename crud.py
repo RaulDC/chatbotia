@@ -184,17 +184,20 @@ def update_record():
 
    
    def Actualizar(new_password, new_con):
-      try:  
-         cursor = db.connection.cursor()
+      try:
+         if len(new_password) < 10:
+            messagebox.showerror("ERROR", "La contraseña debe tener al menos 10 caracteres.")
+         else:  
+            cursor = db.connection.cursor()
 
-         sql="UPDATE t_estudiantes SET con_estudiante = %s WHERE cod_estudiante = %s"
-         val = (new_password, new_con)
-         cursor.execute(sql, val)
-         db.connection.commit()
+            sql="UPDATE t_estudiantes SET con_estudiante = %s WHERE cod_estudiante = %s"
+            val = (new_password, new_con)
+            cursor.execute(sql, val)
+            db.connection.commit()
 
-         messagebox.showinfo("EXITO", "¡Contraseña actualizada!")
-         Ventana_editar.destroy()
-         llenar_tabla()
+            messagebox.showinfo("EXITO", "¡Contraseña actualizada!")
+            Ventana_editar.destroy()
+            llenar_tabla()
 
       except Exception as e:
          messagebox.showerror("ERROR", "Hubo un error al actualizar la contraseña: " + str(e))
