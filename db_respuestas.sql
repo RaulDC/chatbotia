@@ -1,22 +1,26 @@
 CREATE TABLE tb_respuestas (
-    codigo VARCHAR(5),
-    respuesta VARCHAR(255),
-    palabra_clave VARCHAR(255),
-	single_response BOOLEAN,
-    required_word VARCHAR(255)
+    codigo VARCHAR(4),
+    respuesta VARCHAR(1000),
+    palabras_clave VARCHAR(255)
 );
 SELECT * FROM tb_respuestas;
 DROP TABLE tb_respuestas;
 
 -- Inserción de datos en la tabla
-INSERT INTO tb_respuestas (codigo, respuesta, palabra_clave, single_response, required_word) VALUES 
-	('R001', 'Hola soy botCertus', 'hola', 1 ,''),
-	('R001', 'Hola soy botCertus', 'hi', 1 , ''),
-	('R001', 'Hola soy botCertus', 'saludos', 1 ,''),
-	('R001', 'Hola soy botCertus', 'buenas', 1 ,''),
-	('R002', 'Estoy bien y tu?', 'como', 0 ,'como'),
-	('R002', 'Estoy bien y tu?', 'estas', 0 ,'como'),
-	('R002', 'Estoy bien y tu?', 'vas', 0 ,'como'),
-	('R003', 'Siempre a la orden', 'gracias', 1 ,''),
-	('R003', 'Siempre a la orden', 'te lo agradezco', 1 ,''),
-	('R003', 'Siempre a la orden', 'thanks', 1 ,'');
+INSERT INTO tb_respuestas (codigo, respuesta, palabras_clave) VALUES 
+	('R001','¡Hola! Soy un bot personalizado.', 'hola,hi,saludos'),
+	('R002','Estoy bien, ¿y tú?', 'como,estas,va,vas,sientes'),
+	('R003','Gracias, siempre estoy aquí para ayudarte.', 'gracias,te lo agradezco,thanks'),
+	('R004','Qué deseas saber:  \n - Información básica de algun curso \n - Requisitos de algun curso', 'deseo, curso, informacion'),
+	('R005','Información básica del curso: \n > Curso: Diseño de Soluciones con Inteligencia Artificial \n > ID Curso: 10087 \n > Ciclo: VI \n> La modalidad del curso es 100% virtual \n > El sílabo se encuentra en: https://tinyurl.com/f4ydy7z6 \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 3 créditos', 'ia'),
+	('R006','Información básica del curso: \n > Curso: Diseño de Soluciones Blockchain \n > ID Curso: 10084 \n > Ciclo: VI \n > La modalidad del curso es 100% virtual \n > El sílabo se encuentra en: https://tinyurl.com/2s39547k \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 5 créditos', 'blockchain'),
+	('R007','Información básica del curso: \n > Curso: Emprendimiento: Proyecto Integrador \n > ID Curso: 10099 \n > Ciclo: VI \n > La modalidad del curso es 100% presencial \n > Sedes: Surco - Independencia - Etc.  \n > El sílabo se encuentra en: https://tinyurl.com/yckfn7by \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 3 créditos', 'emprendimiento'),
+	('R008','Información básica del curso: \n > Curso: Gestión de Marca Personal \n > ID Curso: 10141 \n > Ciclo: VI \n > La modalidad del curso es 100% virtual \n > El sílabo se encuentra en: https://tinyurl.com/ymtkxcm2 \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 2 créditos', 'marca, personal'),
+	('R009','Información básica del curso: \n > Curso: Arquitectura de tecnología de la información \n > ID Curso: 10017 \n > Ciclo: VI \n > La modalidad del curso es 100% virtual \n > El sílabo se encuentra en: https://tinyurl.com/ymtkxcm2 \n > Hay un total de 4 evaluaciones, una evaluación cada 4 semanas. Para obtener más información, revisa la página 6 del sílabo. \n > El curso equivale a 5 créditos', 'arquitectura'),
+	('R010','Información básica del curso: \n > Curso: Experiencias formativas en situaciones reales de trabajo \n > ID Curso: 10118 \n > Ciclo: VI \n > La modalidad del curso es 100% virtual \n > El sílabo se encuentra en: https://tinyurl.com/56ywf9kz \n > No cuenta con evaluaciones, sino se presenta un informe según la opción que desees realizar. Para obtener más información, revisa el sílabo. \n > El curso equivale a 4 créditos','experiencias, formativas'),
+	('R011','Requisitos del curso: \n > Curso: Experiencias formativas en situaciones reales de trabajo \n > Ciclo: VI \n > UD de Prerreguisito: Ninguno \n > Software: Sin espeficicar','requisitos,curso,experiencias,formativas'),
+    ('R012','Requisitos del curso: \n > Curso: Arquitectura de tecnología de la información \n > Ciclo: VI \n > UD de Prerreguisito: Ninguno \n > Software: \n Si eres usuario Windows: \n • Sistema operativo: Windows 7 o posterior \n • Microsoft Office 2013 o posterior. Recomendable 2016 \n • Navegador actualizado: Safari, Firefox o la última versión de Google Chrome \n Si eres usuario MAC: \n • Sistema operativo: 10.6 o posterior \n • Microsoft Office 2011 o posterior \n • Navegador actualizado: Safari, Firefox o la última versión de Google Chrome \n Para dispositivos móviles: \n • Android 4.0 o posterior  \n • iOS 7.0 o superior','requisitos,curso,arquitectura,tecnologia'),
+    ('R013','Requisitos del curso: \n > Curso: Diseño de soluciones de Inteligencia Artificial \n > Ciclo: VI \n > UD de Prerreguisito: Ninguno \n > Software: \n Si eres usuario Windows: \n • Sistema operativo: Windows 7 o posterior \n • Microsoft Office 2013 o posterior. Recomendable 2016 \n • Navegador actualizado: Safari, Firefox o la última versión de Google Chrome \n Si eres usuario MAC: \n • Sistema operativo: 10.6 o posterior \n • Microsoft Office 2011 o posterior \n • Navegador actualizado: Safari, Firefox o la última versión de Google Chrome \n Para dispositivos móviles: \n • Android 4.0 o posterior  \n • iOS 7.0 o superior','requisitos, curso, ia, inteligencia, artificial'),
+	('R014','Requisitos del curso: \n > Curso: Emprendimiento: Proyecto Integrador \n > Ciclo: VI \n > UD de Prerreguisito: Emprendimiento: Plan de desarrollo del negocio \n > Software: \n Si eres usuario Windows: \n • Sistema operativo: Windows 7 o posterior \n • Microsoft Office 2013 o posterior. Recomendable 2016 \n • Navegador actualizado: Safari, Firefox o la última versión de Google Chrome \n Si eres usuario MAC: \n • Sistema operativo: 10.6 o posterior \n • Microsoft Office 2011 o posterior \n • Navegador actualizado: Safari, Firefox o la última versión de Google Chrome \n Para dispositivos móviles: \n • Android 4.0 o posterior  \n • iOS 7.0 o superior','requisitos, curso, emprendimiento'),
+    ('R015','Requisitos del curso: \n > Curso: Gestion de Marca Personal \n > Ciclo: VI \n > UD de Prerreguisito: Ninguno \n > Software: \n Si eres usuario Windows: \n • Sistema operativo: Windows 7 o posterior \n • Microsoft Office 2013 o posterior. Recomendable 2016 \n • Navegador actualizado: Safari, Firefox o la última versión de Google Chrome \n Si eres usuario MAC: \n • Sistema operativo: 10.6 o posterior \n • Microsoft Office 2011 o posterior \n • Navegador actualizado: Safari, Firefox o la última versión de Google Chrome \n Para dispositivos móviles: \n • Android 4.0 o posterior  \n • iOS 7.0 o superior', 'requisitos, curso, gestion, marca'),
+	('R016','Requisitos del curso: \n > Curso: Diseño de Soluciones Blockchain \n > Ciclo: VI \n > UD de Prerreguisito: Ninguno \n > Software: \n Si eres usuario Windows: \n • Sistema operativo: Windows 7 o posterior \n • Microsoft Office 2013 o posterior. Recomendable 2016 \n • Navegador actualizado: Safari, Firefox o la última versión de Google Chrome \n Si eres usuario MAC: \n • Sistema operativo: 10.6 o posterior \n • Microsoft Office 2011 o posterior \n • Navegador actualizado: Safari, Firefox o la última versión de Google Chrome \n Para dispositivos móviles: \n • Android 4.0 o posterior  \n • iOS 7.0 o superior', 'requisitos, curso, blockchain’');
