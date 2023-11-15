@@ -118,7 +118,7 @@ def enviar():
     print(f"User: {msg}")
     print(f"Bot Response: {bot_response}")
     
-    msg2 = f"Bot> {bot_response}\n"
+    msg2 = f"Bob> {bot_response}\n"
     chat_bg.configure(state=NORMAL)
     chat_bg.insert(END, msg2, "bot_message")
     chat_bg.configure(state=DISABLED)
@@ -146,6 +146,13 @@ root.configure(width=470, height=550, bg='#00205B')
 # CABECERA
 title = Label(root, bg='#00205B', text='BIENVENIDO(A)', font=('helvetica', 13, "bold"), fg='#EAECEE', pady=10)
 title.place(relwidth=1)
+
+# BOTON CERRAR SESION
+button_width = 7
+button_height = 1
+
+button_cerrar = Button(root, text="Cerrar", font=('helvetica', 10, "bold"), bg='#FF0914', fg='white', command=redireccionar_pagina, width=button_width, height=button_height, activeforeground='#FF0914', relief=FLAT, border=0, activebackground='white')
+button_cerrar.place(relx=0.8, rely=0.012)
 
 # DIVISOR
 line = Label(root, width=450, bg='white')
