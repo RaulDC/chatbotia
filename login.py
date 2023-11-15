@@ -75,7 +75,7 @@ class Login:
             if autenticado:
                 messagebox.showinfo("BIENVENIDO(A)", f'Estudiante {nombre} {apellido}') 
                 ventana_login.destroy()    
-                subprocess.call([sys.executable, 'C:/Users/TUF GAMING/Documents/GitHub/chatbotia/app-bot.py', 'htmlfilename.htm'])  
+                subprocess.call([sys.executable, 'C:/Users/TUF GAMING/Documents/GitHub/chatbotia/bot.py', 'htmlfilename.htm'])  
             else:
                 messagebox.showerror("ERROR DE INGRESO", "Código o contraseña incorrectos") 
 
