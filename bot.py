@@ -100,6 +100,15 @@ def enviar():
 
     user_entry.delete(0, 'end')
 
+    # Aquí se guarda el mensaje del usuario en la base de datos
+    cod_estudiante_actual = obtener_cod_estudiante_actual()  # Obtén el código del estudiante actual
+
+    db.cursor.execute("""
+        INSERT INTO t_conversaciones (cod_estudiante, mensaje_usuario, respuesta_bot)
+        VALUES (%s, %s, %s)
+    """, (cod_estudiante_actual, msg, ""))  # El campo 'respuesta_bot' se deja vacío por ahora
+    db.connection.commit()
+    
     msg1 = f"{msg}> {sender}\n"
     chat_bg.configure(state=NORMAL)
     chat_bg.insert(END, msg1, "user_message")
@@ -117,6 +126,13 @@ def enviar():
     bot_response = get_response(msg)
     print(f"User: {msg}")
     print(f"Bot Response: {bot_response}")
+
+    # Aquí se guarda la respuesta del bot en la base de datos
+    db.cursor.execute("""
+        UPDATE t_conversaciones SET respuesta_bot = %s WHERE cod_estudiante = %s AND mensaje_usuario = %s
+    """, (bot_response, cod_estudiante_actual, msg))
+    db.connection.commit()
+
     
     msg2 = f"Bob> {bot_response}\n"
     chat_bg.configure(state=NORMAL)
