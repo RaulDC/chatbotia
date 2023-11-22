@@ -133,13 +133,14 @@ def limpiar_chat():
     chat_bg.configure(state=DISABLED)
 
 def redireccionar_pagina():
+    root.destroy()
     subprocess.call([sys.executable, 'C:/Users/TUF GAMING/Documents/GitHub/chatbotia/login.py', 'htmlfilename.htm'])
 
 def on_scroll(*args):
     chat_bg.yview(*args)
 
 root = Tk()
-root.title('ChatBotIA Certus')
+root.title('ChatBob Certus')
 root.resizable(width=False, height=False)
 root.configure(width=470, height=550, bg='#00205B')
 
@@ -148,11 +149,11 @@ title = Label(root, bg='#00205B', text='BIENVENIDO(A)', font=('helvetica', 13, "
 title.place(relwidth=1)
 
 # BOTON CERRAR SESION
-button_width = 7
+button_width = 12
 button_height = 1
 
-button_cerrar = Button(root, text="Cerrar Sesión", font=('helvetica', 10, "bold"), bg='#FF0914', fg='white', command=redireccionar_pagina, width=button_width, height=button_height, activeforeground='#FF0914', relief=FLAT, border=0, activebackground='white')
-button_cerrar.place(relx=0.8, rely=0.012)
+button_cerrar = Button(root, text="Cerrar Sesión", font=('helvetica', 10, "bold"), bg='#d32f2f', fg='white', command=redireccionar_pagina, width=button_width, height=button_height, activeforeground='#FF0914', relief=FLAT, border=0, activebackground='white')
+button_cerrar.place(relx=0.73, rely=0.012)
 
 # DIVISOR
 line = Label(root, width=450, bg='white')
