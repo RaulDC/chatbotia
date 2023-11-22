@@ -3,7 +3,7 @@ create database bd_certus;
 use bd_certus;
 
 CREATE TABLE t_estudiantes (
-    cod_estudiante VARCHAR(100) NOT NULL,
+    cod_estudiante VARCHAR(100) NOT NULL PRIMARY KEY,
     con_estudiante VARCHAR(100) NOT NULL,
     nom_estudiante VARCHAR(100) NOT NULL,
     ape_estudiante VARCHAR(100) NOT NULL
