@@ -151,7 +151,7 @@ title.place(relwidth=1)
 button_width = 7
 button_height = 1
 
-button_cerrar = Button(root, text="Cerrar", font=('helvetica', 10, "bold"), bg='#FF0914', fg='white', command=redireccionar_pagina, width=button_width, height=button_height, activeforeground='#FF0914', relief=FLAT, border=0, activebackground='white')
+button_cerrar = Button(root, text="Cerrar Sesión", font=('helvetica', 10, "bold"), bg='#FF0914', fg='white', command=redireccionar_pagina, width=button_width, height=button_height, activeforeground='#FF0914', relief=FLAT, border=0, activebackground='white')
 button_cerrar.place(relx=0.8, rely=0.012)
 
 # DIVISOR
