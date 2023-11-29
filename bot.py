@@ -5,6 +5,13 @@ import sys
 import subprocess
 from connection import *
 
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        cod_estudiante = sys.argv[1]
+        print(f"Código de estudiante: {cod_estudiante}")
+    else:
+        print("No se proporcionó el código del estudiante.")
+
 # Conexión a la base de datos
 db = DataBase()
 
@@ -101,7 +108,7 @@ def enviar():
     user_entry.delete(0, 'end')
 
     # Aquí se guarda el mensaje del usuario en la base de datos
-    cod_estudiante_actual = obtener_cod_estudiante_actual()  # Obtén el código del estudiante actual
+    cod_estudiante_actual = cod_estudiante  # Obtén el código del estudiante actual
 
     db.cursor.execute("""
         INSERT INTO t_conversaciones (cod_estudiante, mensaje_usuario, respuesta_bot)
